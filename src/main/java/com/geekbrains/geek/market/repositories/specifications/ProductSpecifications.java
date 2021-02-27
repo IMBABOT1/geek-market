@@ -1,5 +1,6 @@
 package com.geekbrains.geek.market.repositories.specifications;
 
+
 import com.geekbrains.geek.market.entities.Product;
 import org.springframework.data.jpa.domain.Specification;
 

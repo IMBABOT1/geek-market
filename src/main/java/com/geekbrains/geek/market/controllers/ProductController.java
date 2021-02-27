@@ -3,7 +3,6 @@ package com.geekbrains.geek.market.controllers;
 import com.geekbrains.geek.market.entities.Product;
 import com.geekbrains.geek.market.exceptions.ResourceNotFoundException;
 import com.geekbrains.geek.market.services.ProductService;
-import com.geekbrains.geek.market.utils.ProductFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -23,16 +22,18 @@ public class ProductController {
     @GetMapping
     public String showAllProducts(Model model,
                                   @RequestParam(defaultValue = "1", name = "p") Integer page,
-                                  @RequestParam Map<String, String> params
+                                  @RequestParam(name = "title", required = false) String titlePart,
+                                  @RequestParam(name = "min_price", required = false) Integer minPrice,
+                                  @RequestParam(name = "max_price", required = false) Integer maxPrice
                                   ) {
-        if (page < 1) {
+
+        if (page < 1){
             page = 1;
         }
-        ProductFilter productFilter = new ProductFilter(params);
-        Page<Product> products = productService.findAll(productFilter.getSpec(), page - 1, 5);
+        Page<Product> products = productService.findAll(titlePart, minPrice, maxPrice, 0, 5);
         model.addAttribute("products", products);
-        model.addAttribute("filterDefinition", productFilter.getFilterDefinition());
         return "products";
+
     }
 
     @GetMapping("/{id}")
@@ -48,4 +49,6 @@ public class ProductController {
         productService.deleteById(id);
         return "ok";
     }
+
+   // public String showAllProducts(Model model, @RequestParam(defaultValue = "1", name = "p"), Integer)
 }
