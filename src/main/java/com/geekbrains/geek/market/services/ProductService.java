@@ -39,7 +39,7 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page, size));
     }
 
-    public Page<Product> edit(Long id, String title, Integer price, int page, int size){
+    public Page<Product> edit(Long id, String title, Integer price){
         Specification<Product> spec = Specification.where(null);
         if (title != null && !title.isBlank()){
            spec = spec.and(ProductSpecifications.titleEquals(title));
@@ -51,10 +51,15 @@ public class ProductService {
             spec = spec.and(ProductSpecifications.priceEquals(price));
        }
 
+        if (spec.equals(id)){
+
+        }
+
+
         Product product = new Product();
         product.setId(id);
         product.setTitle(title);
         product.setPrice(price);
-       return productRepository.save();
+       return productRepository.findAll(spec, )
    }
 }
