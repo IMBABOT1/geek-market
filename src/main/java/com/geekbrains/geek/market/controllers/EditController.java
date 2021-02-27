@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,6 +25,10 @@ public class EditController {
                                   @RequestParam(name = "price", required = false) Integer price
                                     ) {
 
+
+//        product.setId(id);
+//        product.setPrice(price);
+//        product.setTitle(title);
         if (page < 1){
             page = 1;
         }
