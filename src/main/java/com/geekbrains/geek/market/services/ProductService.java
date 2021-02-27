@@ -3,12 +3,15 @@ package com.geekbrains.geek.market.services;
 import com.geekbrains.geek.market.entities.Product;
 import com.geekbrains.geek.market.repositories.ProductRepository;
 import com.geekbrains.geek.market.repositories.specifications.ProductSpecifications;
+import com.geekbrains.geek.market.utils.ProductFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -24,20 +27,10 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-    public Page<Product> findAll(String title, Integer minPrice, Integer maxPrice, int page, int size) {
-        Specification<Product> spec = Specification.where(null);
-        if (title != null && !title.isBlank()){
-            spec = spec.and(ProductSpecifications.titleLike(title));
-        }
-        if (minPrice != null){
-            spec = spec.and(ProductSpecifications.priceGreaterOrEqualsThan(minPrice));
-        }
-        if (maxPrice != null){
-            spec = spec.and(ProductSpecifications.priceLesserOrEqualsThan(maxPrice));
-        }
-
+    public Page<Product> findAll(Specification<Product> spec, int page, int size) {
         return productRepository.findAll(spec, PageRequest.of(page, size));
     }
+
 
     public Page<Product> edit(Long id, String title, Integer price, int page, int size){
         Specification<Product> spec = Specification.where(null);
