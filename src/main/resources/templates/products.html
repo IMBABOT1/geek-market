@@ -49,8 +49,9 @@
             <td th:text="${p.id}"/>
             <td th:text="${p.title}"/>
             <td th:text="${p.price}"/>
-
-            <a class="btn btn-danger" th:href="@{'/edit/' + ${p.id}">Редактировать</a>
+            <td>
+                <a class="btn btn-danger" th:href="@{'/edit/' + ${p.id}}">Редактировать</a>
+            </td>
         </tr>
         </tbody>
     </table>
