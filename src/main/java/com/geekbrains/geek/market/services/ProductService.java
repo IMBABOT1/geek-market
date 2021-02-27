@@ -39,18 +39,18 @@ public class ProductService {
         return productRepository.findAll(spec, PageRequest.of(page, size));
     }
 
-//    public Page<Product> edit(Long id, String title, Integer price, int page, int size){
-//        Specification<Product> spec = Specification.where(null);
-//        if (title != null && !title.isBlank()){
-//            spec = spec.and(ProductSpecifications.nameEquals(title));
-//        }
-//        if (id != null){
-//            spec = spec.and(ProductSpecifications.idEquals(id));
-//        }
-//        if (price != null){
-//            spec = spec.and(ProductSpecifications.priceEquals(price));
-//        }
-//
-//        return productRepository.findAll(spec, PageRequest.of(page, size));
-//    }
+    public Page<Product> edit(Long id, String title, Integer price, int page, int size){
+        Specification<Product> spec = Specification.where(null);
+        if (title != null && !title.isBlank()){
+           spec = spec.and(ProductSpecifications.titleEquals(title));
+        }
+        if (id != null){
+            spec = spec.and(ProductSpecifications.idEquals(id));
+        }
+        if (price != null){
+            spec = spec.and(ProductSpecifications.priceEquals(price));
+       }
+
+       return productRepository.findAll(spec, PageRequest.of(page, size));
+   }
 }

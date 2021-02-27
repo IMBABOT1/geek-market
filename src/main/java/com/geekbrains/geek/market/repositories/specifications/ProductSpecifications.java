@@ -16,4 +16,16 @@ public class ProductSpecifications {
     public static Specification<Product> titleLike(String titlePart) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), String.format("%%%s%%", titlePart)); // where p.title like %titlePart%
     }
+
+    public static Specification<Product> idEquals(Long id){
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), id);
+    }
+
+    public static Specification<Product> priceEquals(Integer price){
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("price"), price);
+    }
+
+    public static Specification<Product> titleEquals(String titlePart) {
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), String.format("%%%s%%", titlePart)); // where p.title like %titlePart%
+    }
 }

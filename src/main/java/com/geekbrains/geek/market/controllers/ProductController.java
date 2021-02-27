@@ -33,7 +33,6 @@ public class ProductController {
         Page<Product> products = productService.findAll(titlePart, minPrice, maxPrice, 0, 5);
         model.addAttribute("products", products);
         return "products";
-
     }
 
     @GetMapping("/{id}")
