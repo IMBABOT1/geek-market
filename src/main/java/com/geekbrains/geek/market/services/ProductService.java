@@ -51,6 +51,10 @@ public class ProductService {
             spec = spec.and(ProductSpecifications.priceEquals(price));
        }
 
-       return productRepository.findAll(spec, PageRequest.of(page, size));
+        Product product = new Product();
+        product.setId(id);
+        product.setTitle(title);
+        product.setPrice(price);
+       return productRepository.save();
    }
 }
