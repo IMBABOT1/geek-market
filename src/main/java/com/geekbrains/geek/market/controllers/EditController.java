@@ -23,7 +23,7 @@ public class EditController {
                                   @RequestParam(name = "id", required = false) Long id,
                                   @RequestParam(name = "title", required = false) String title,
                                   @RequestParam(name = "price", required = false) Integer price
-                                    ) {
+    ) {
 
 
 //        product.setId(id);
