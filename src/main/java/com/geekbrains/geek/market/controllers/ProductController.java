@@ -55,23 +55,18 @@ public class ProductController {
     }
 
 
-    @GetMapping("/edit/product/{id}")
+    @GetMapping("/edit/product/")
     public String showAllProducts(Model model,
-                                  @PathVariable Long id,
                                   @RequestParam(name = "id", required = false) Long id1,
                                   @RequestParam(name = "title", required = false) String title,
                                   @RequestParam(name = "price", required = false) Integer price
     ) {
 
-        System.out.println(id);
+        System.out.println(id1);
+        System.out.println(title);
+        System.out.println(price);
         List<Product> products = productService.edit(id1, title, price);
-        for (int i = 0; i < products.size() ; i++) {
-            if (products.get(Math.toIntExact(1)).getId() == 1){
-                products.get(Math.toIntExact(id)).setId(1000l);
-                products.get(Math.toIntExact(id)).setTitle("title123");
-                products.get(Math.toIntExact(id)).setPrice(123456);
-            }
-        }
+
         model.addAttribute("products", products);
         return "edit";
     }
