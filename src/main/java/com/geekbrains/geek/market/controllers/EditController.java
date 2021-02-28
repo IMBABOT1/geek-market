@@ -6,10 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/edit/{id}")
@@ -26,13 +25,20 @@ public class EditController {
     ) {
 
 
-//        product.setId(id);
-//        product.setPrice(price);
-//        product.setTitle(title);
+
         if (page < 1){
             page = 1;
         }
-        Page<Product> products = productService.edit(id, title, price, 0, 5);
+        List<Product> products = productService.edit(id, title, price, 0, 5);
+
+        for (int i = 0; i < products.size() ; i++) {
+            if (products.get(Math.toIntExact(1)).getId() == 1){
+                products.get(Math.toIntExact(id)).setId(id);
+                products.get(Math.toIntExact(id)).setTitle(title);
+                products.get(Math.toIntExact(id)).setPrice(price);
+            }
+        }
+
         model.addAttribute("products", products);
         return "edit";
     }

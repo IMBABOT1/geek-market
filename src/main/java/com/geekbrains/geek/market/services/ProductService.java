@@ -32,7 +32,7 @@ public class ProductService {
     }
 
 
-    public Page<Product> edit(Long id, String title, Integer price, int page, int size){
+    public List<Product> edit(Long id, String title, Integer price, int page, int size){
         Specification<Product> spec = Specification.where(null);
         if (title != null && !title.isBlank()){
            spec = spec.and(ProductSpecifications.titleEquals(title));
@@ -49,6 +49,6 @@ public class ProductService {
 //        product.setId(id);
 //        product.setTitle(title);
 //        product.setPrice(price);
-        return productRepository.findAll(spec, PageRequest.of(page, size));
+        return productRepository.findAll(spec);
    }
 }
