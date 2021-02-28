@@ -52,17 +52,19 @@ public class ProductController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id){
         Long var = id;
-        return "redirect:/edit/product/{id}";
+        return "redirect:/products/edit1/" + var;
     }
 
 
-    @GetMapping("/edit/product/{id}")
+    @GetMapping("/edit1/{id}")
     public String showAllProducts(Model model,
+                                  @PathVariable Long id,
                                   @RequestParam(name = "id", required = false) Long id1,
                                   @RequestParam(name = "title", required = false) String title,
                                   @RequestParam(name = "price", required = false) Integer price
     ) {
 
+        System.out.println(id);
         System.out.println(id1);
         System.out.println(title);
         System.out.println(price);
