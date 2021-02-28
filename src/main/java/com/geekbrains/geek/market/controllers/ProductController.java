@@ -49,25 +49,28 @@ public class ProductController {
         return "ok";
     }
 
-    @GetMapping("/edit/{id}")
-    public String edit(){
-        return "edit";
-    }
+//    @GetMapping("/edit/{id}")
+//    public String edit(){
+//        return "edit";
+//    }
 
 
-    @GetMapping("/edit/product/")
+    @GetMapping("/edit/product/{id}")
     public String showAllProducts(Model model,
+                                  @PathVariable Long id,
                                   @RequestParam(name = "id", required = false) Long id1,
                                   @RequestParam(name = "title", required = false) String title,
                                   @RequestParam(name = "price", required = false) Integer price
     ) {
 
+        System.out.println(id);
         System.out.println(id1);
         System.out.println(title);
         System.out.println(price);
         List<Product> products = productService.edit(id1, title, price);
+        products.get(0).setTitle("123");
 
         model.addAttribute("products", products);
-        return "edit";
+        return "products";
     }
 }

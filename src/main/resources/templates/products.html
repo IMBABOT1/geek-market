@@ -52,7 +52,7 @@
             <td th:text="${p.title}"/>
             <td th:text="${p.price}"/>
             <td>
-                <a class="btn btn-danger" th:href="@{'/products/edit/' + ${p.id}}">Редактировать</a>
+                <a class="btn btn-danger" th:href="@{'/products/edit/product/' + ${p.id}}">Редактировать</a>
             </td>
         </tbody>
     </table>
