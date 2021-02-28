@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/edit")
+@RequestMapping("/edit/{id}")
 @AllArgsConstructor
 public class EditController {
     private ProductService productService;
 
-    @GetMapping
+    @GetMapping()
     public String showAllProducts(Model model,
                                   @RequestParam(defaultValue = "1", name = "p") Integer page,
                                   @RequestParam(name = "id", required = false) Long id,
