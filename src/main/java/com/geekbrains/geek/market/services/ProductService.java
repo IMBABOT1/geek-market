@@ -32,7 +32,7 @@ public class ProductService {
     }
 
 
-    public List<Product> edit(Long id, String title, Integer price, int page, int size){
+    public List<Product> edit(Long id, String title, Integer price){
         Specification<Product> spec = Specification.where(null);
         if (title != null && !title.isBlank()){
            spec = spec.and(ProductSpecifications.titleEquals(title));

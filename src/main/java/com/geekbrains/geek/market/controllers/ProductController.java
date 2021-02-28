@@ -55,14 +55,14 @@ public class ProductController {
     }
 
 
-    @GetMapping("/edit/product/")
+    @GetMapping("/edit/product/{id}")
     public String showAllProducts(Model model,
                                   @RequestParam(name = "id", required = false) Long id,
                                   @RequestParam(name = "title", required = false) String title,
                                   @RequestParam(name = "price", required = false) Integer price
     ) {
 
-        List<Product> products = productService.edit(id, title, price, 0, 5);
+        List<Product> products = productService.edit(id, title, price);
         for (int i = 0; i < products.size() ; i++) {
             if (products.get(Math.toIntExact(1)).getId() == 1){
                 products.get(Math.toIntExact(id)).setId(1000l);
