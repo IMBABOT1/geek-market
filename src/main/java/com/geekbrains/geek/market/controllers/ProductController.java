@@ -59,6 +59,7 @@ public class ProductController {
     @GetMapping("/edit1/{id}")
     public String showAllProducts(Model model,
                                   @PathVariable Long id,
+                                  @RequestParam(defaultValue = "1", name = "p") Integer page,
                                   @RequestParam(name = "id", required = false) Long id1,
                                   @RequestParam(name = "title", required = false) String title,
                                   @RequestParam(name = "price", required = false) Integer price
@@ -71,10 +72,16 @@ public class ProductController {
         System.out.println(price);
 
 
-        List<Product> products = productService.edit(id);
-        products.get(Math.toIntExact(id-1)).setId(id1);
-        products.get(Math.toIntExact(id-1)).setTitle(title);
-        products.get(Math.toIntExact(id-1)).setPrice(price);
+        Page<Product> products = productService.edit(id, page-1, 5);
+
+        for (Product p : products){
+            if (p.getId().equals(id)){
+                p.setId(id1);
+                p.setPrice(price);
+                p.setTitle(title);
+            }
+        }
+
 
         model.addAttribute("products", products);
         return "products";

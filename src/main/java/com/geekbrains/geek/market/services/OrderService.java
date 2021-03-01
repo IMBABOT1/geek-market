@@ -14,9 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class OrderService {
     private OrderRepository orderRepository;
-
     public List<Order> findAll() {
         return orderRepository.findAll();
     }
-
 }
