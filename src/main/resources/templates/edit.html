@@ -15,7 +15,7 @@
 </head>
 <body>
 <H3>Редактирование товара</H3>
-<form method="get" th:action="@{'/products/edit/product/'}">
+<form method="get" th:action="@{'/products/edit1/' + ${id}}">
 
     <div class="form-group col-md-6">
         <label for="changeId">Изменить Id товара</label>
@@ -31,6 +31,7 @@
         <label for="changePrice">Изменить цену товара</label>
         <input class="form-control" name="price" type="number" id="changePrice">
     </div>
+
 
     <button class="btn btn-primary" type="submit">Применить</button>
 

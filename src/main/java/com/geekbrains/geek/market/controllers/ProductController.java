@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Long id){
+    public String edit(@PathVariable Long id) {
         Long var = id;
         return "redirect:/products/edit1/" + var;
     }
@@ -64,11 +64,15 @@ public class ProductController {
                                   @RequestParam(name = "price", required = false) Integer price
     ) {
 
+        Long var = id;
         System.out.println(id);
         System.out.println(id1);
         System.out.println(title);
         System.out.println(price);
+
+
         List<Product> products = productService.edit(id1, title, price);
+        products.get(Math.toIntExact(id)).setId(id1);
 
         model.addAttribute("products", products);
         return "edit";
